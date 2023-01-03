@@ -33,10 +33,10 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
   app.get('/filteredimage', validateImgUrl, async (req: Request, res: Response) => {
     try {
       const image_url = req.query.image_url as string;
-      const filteredimage = await filterImageFromURL(image_url)
-      res.sendFile(filteredimage);
+      const filteredpath = await filterImageFromURL(image_url)
+      res.sendFile(filteredpath);
       res.on('finish', () => {
-        deleteLocalFiles([filteredimage]);
+        deleteLocalFiles([filteredpath]);
       })
     } catch (err) {
       return res.status(500).json({message: "Server error", err})
