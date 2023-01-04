@@ -1,9 +1,18 @@
-# UDACITY - CLOUD DEVELOPER NANODEGREE
+# UDACITY - CLOUD DEVELOPER NANODEGREE PROJECT 2
 
 ## Project 2: Udagram: Your Own Instagram on AWS
-### Running elastic beanstalk deployment endpoint URL: http://abdalodj-udacity-c2-image-filter-dev.us-east-1.elasticbeanstalk.com/
-### Elastic Beanstalk dashboeard
+### Running elastic beanstalk Image filter (project 2) deployment endpoint URL: 
+	http://abdalodj-udacity-c2-image-filter-dev.us-east-1.elasticbeanstalk.com/
+### Elastic Beanstalk dashboard
 	Screenshot file: deployment_screenshots/Elastic_Beanstalk_dashboard.png
+	
+### Other deployments : 
+	RestApi Server: 
+		github: https://github.com/Abdalodj/udacity-project2-restapi
+		deployment: http://udagram-abda-dev-dev.us-east-1.elasticbeanstalk.com/
+	Frontend: 
+		github: https://github.com/Abdalodj/udacity-project2-frontend
+		deployment: https://udacity-project2-frontend.herokuapp.com/
 
 # Udagram Image Filtering Microservice
 
