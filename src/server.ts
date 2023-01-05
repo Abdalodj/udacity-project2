@@ -38,8 +38,8 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
       res.on('finish', () => {
         deleteLocalFiles([filteredpath]);
       })
-    } catch (err) {
-      return res.status(500).json({message: "Server error", err})
+    } catch (err: any) {
+      return res.status(500).json({message: "Server error", ...err})
     }
   });
 
