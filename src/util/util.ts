@@ -1,5 +1,6 @@
 import fs from "fs";
 import Jimp = require("jimp");
+import axios from 'axios'
 
 // filterImageFromURL
 // helper function to download, filter, and save the filtered image locally
@@ -11,9 +12,12 @@ import Jimp = require("jimp");
 export async function filterImageFromURL(inputURL: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
-      const photo = await Jimp.read(inputURL);
+      const ext = getExt(inputURL)
+      const result = await axios.get(inputURL, {responseType: "arraybuffer"});
+      const buffer = Buffer.from(result.data, 'binary');
+      const photo = await Jimp.read(buffer)
       const outpath =
-        "/tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
+        "/tmp/filtered." + Math.floor(Math.random() * 2000) + `.${ext}`;
       await photo
         .resize(256, 256) // resize
         .quality(60) // set JPEG quality
@@ -36,4 +40,16 @@ export async function deleteLocalFiles(files: Array<string>) {
   for (let file of files) {
     fs.unlinkSync(file);
   }
+}
+
+async function handleImgDownloadFailed(inputURL: string): Promise<string> {
+  const result = await axios.get(inputURL, {responseType: "arraybuffer"});
+  const buffer = Buffer.from(result.data, 'binary');
+  const photo = await Jimp.read(buffer)
+  return ''
+}
+
+function getExt(url: string): string {
+  const tmp = url.split('.')
+  return tmp[tmp.length - 1]
 }
